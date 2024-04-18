@@ -25,7 +25,6 @@ async function generateImage(summary, extras) {
                         setTimeout(() => checkStatus(startTime), 5000);
                     } else {
                         const data = JSON.parse(textContent);
-                        alert(data.image)
                         return data.image;
                     }
                 })
