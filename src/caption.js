@@ -20,7 +20,8 @@ function captionImage(image) {
 
         })
         .catch(error => {
-            alert(error);
+            alert(error)
+            alert("here");
             reject(error);
         });
     });
