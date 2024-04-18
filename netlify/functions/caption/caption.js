@@ -9,7 +9,7 @@ const handler = async (event) => {
     const API_KEY = process.env.API_KEY;
     const API_HOST = 'open-ai21.p.rapidapi.com';
 
-    throw new Error(await event.text())
+    throw new Error(JSON.stringify(event))
 
     const imageBase64 = event.queryStringParameters.image;
 
