@@ -6,6 +6,7 @@ async function setupFetch() {
 export default async (request) => {
   const fetch = await setupFetch();
   try {
+    
     throw new Error("Simulated Error");
   } catch (error) {
     return new Response(error.message, { status: 500 });

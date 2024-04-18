@@ -3,3 +3,7 @@
 [[edge_functions]]
 function = "caption"
 path = "/test"
+
+[[edge_functions]]
+function = "test"
+path = "/test"
