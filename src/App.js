@@ -53,12 +53,14 @@ function App() {
         <button onClick={clearCanvas}>Clear</button>
         <button onClick={undoLastAction}>Undo</button>
       </div>
+      {/* 
       {showGenerate && <button onClick={generateResult}>
         Generate Image
       </button>}
       {image && <div>
           <a href={image} target="_blank" rel="noopener noreferrer">Open Generation</a>
       </div>}
+      */}
     </div>
   );
 }
