@@ -12,6 +12,7 @@ function App() {
   const canvasRef = useRef(null);
   const [eraserEnabled, setEraserEnabled] = useState(false);
   const [image, setImage] = useState('')
+  const [showGenerate, setShowGenerate] = useState(true)
 
   const clearCanvas = () => {
     canvasRef.current.clear();
@@ -34,6 +35,7 @@ function App() {
 
 
   const generateResult = async () => {
+    setShowGenerate(false)
     const summary = "drawing of a tree next to a red barn"
     const extras = "tree it to the left of the barn"
     const resultImage = await generateImage(summary, extras);
@@ -61,7 +63,9 @@ function App() {
           <a href={imageURL} target="_blank" rel="noopener noreferrer">Open Saved Drawing</a>
         </div>}
       </div>
-      <button onClick={generateResult}>Generate Image</button>
+      {showGenerate && <button onClick={generateResult}>
+        Generate Image
+      </button>}
       {image && <div>
           <a href={image} target="_blank" rel="noopener noreferrer">Open Generation</a>
       </div>}

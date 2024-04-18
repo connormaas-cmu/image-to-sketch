@@ -10,7 +10,10 @@ function generateImage(summary, extras) {
     })
     .then(response => response.text())
     .then(textResponse => {
-        alert(textResponse)
+        if (textContent.includes("Error")) {
+            alert("Too many requests. Please wait and try again later.")
+            return;
+        }
         const data = JSON.parse(textResponse);
         const innerData = JSON.parse(data.task_id);
         const taskId = innerData.data.task_id; 
