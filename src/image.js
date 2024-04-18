@@ -1,4 +1,6 @@
 function generateImage(summary, extras) {
+
+    return new Promise((resolve, reject) => { 
     const abrExtras = extras.substring(0, 200)
 
     fetch('/.netlify/functions/image', {
@@ -37,8 +39,10 @@ function generateImage(summary, extras) {
 
     })
     .catch(error => {
-        alert(error);
+      alert(error);
+      reject(error);
     });
+  });
 }
 
 export default generateImage;
