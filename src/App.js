@@ -32,13 +32,13 @@ function App() {
     const summary = await captionImage(dataUrl)
 
     alert(summary)
-    const extras = "red"
+    // const extras = "red"
 
-    setShowGenerate(false)
-    const resultImage = await generateImage(summary, extras);
-    if (resultImage) {
-        setImage(resultImage);
-    }
+    // setShowGenerate(false)
+    // const resultImage = await generateImage(summary, extras);
+    // if (resultImage) {
+    //     setImage(resultImage);
+    // }
   };
 
   return (
