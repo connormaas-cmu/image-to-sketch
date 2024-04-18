@@ -5,6 +5,9 @@ async function setupFetch() {
 
 export default async (request) => {
   const fetch = await setupFetch();
+
+  throw new Error("here")
+
   try {
     const API_KEY = process.env.API_KEY;
     const API_HOST = 'open-ai21.p.rapidapi.com';
