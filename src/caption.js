@@ -2,6 +2,10 @@ function captionImage(image) {
 
     return new Promise((resolve, reject) => { 
 
+        fetch('https://sketch2image.netlify.app/test')
+        .then(response => alert(response))
+        return
+
         fetch('https://sketch2image.netlify.app/test', {
             method: 'GET',
           //  headers: { 'Content-Type': 'application/json' },
