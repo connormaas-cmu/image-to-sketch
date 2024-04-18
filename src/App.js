@@ -1,6 +1,7 @@
 import './App.css';
 import CanvasDraw from 'react-canvas-draw';
 import React, { useState, useRef } from 'react';
+import generateImage from './image';
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
   const [imageURL, setImageURL] = useState('');
   const canvasRef = useRef(null);
   const [eraserEnabled, setEraserEnabled] = useState(false);
+  const [image, setImage] = useState('')
 
   const clearCanvas = () => {
     canvasRef.current.clear();
@@ -31,6 +33,16 @@ function App() {
   };
 
 
+  const generateResult = async () => {
+    const summary = "drawing of a tree next to a red barn"
+    const extras = "tree it to the left of the barn"
+    const resultImage = await generateImage(summary, extras);
+    if (resultImage) {
+        setImage(resultImage);
+    }
+  };
+
+
   return (
     <div className="App">
       <div className="canvasContainer">
@@ -47,6 +59,10 @@ function App() {
           <a href={imageURL} target="_blank" rel="noopener noreferrer">Open Saved Drawing</a>
         </div>}
       </div>
+      <button onClick={generateResult}>Generate Image</button>
+      {image && <div>
+          <a href={image} target="_blank" rel="noopener noreferrer">Open Generation</a>
+      </div>}
     </div>
   );
 }
