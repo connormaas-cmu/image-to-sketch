@@ -32,10 +32,8 @@ function generateImage(summary, extras) {
                     } else if (textContent.includes("Error")) {
                         alert(textContent)
                     } else {
-                        alert("done")
                         const data = JSON.parse(textContent);
-                        alert(data.image)
-                        return data.image;
+                        resolve(data.image);
                     }
                 })
                 .catch(error => {
