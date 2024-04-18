@@ -19,7 +19,6 @@ function generateImage(summary, extras) {
         const taskId = innerData.data.task_id; 
         
         const checkStatus = (startTime) => {
-            alert("here")
             if (new Date() - startTime > 30000) {
                 alert("Timeout: Image generation took too long.");
                 return;
@@ -31,7 +30,9 @@ function generateImage(summary, extras) {
                     if (textContent.includes("Image is still being processed.")) {
                         setTimeout(() => checkStatus(startTime), 5000);
                     } else {
+                        alert("done")
                         const data = JSON.parse(textContent);
+                        alert(data.image)
                         return data.image;
                     }
                 })
