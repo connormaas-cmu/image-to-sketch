@@ -19,12 +19,17 @@ export default async (request) => {
     });
   }
 
-  const fetch = await setupFetch();
+  // const fetch = await setupFetch();
 
   try {
 
-    const API_KEY = process.env.API_KEY;
-    const API_HOST = 'open-ai21.p.rapidapi.com';
+   // const API_KEY = process.env.API_KEY;
+   // const API_HOST = 'open-ai21.p.rapidapi.com';
+
+   return new Response(request, { 
+      status: 200, 
+      headers: headers
+    })
 
     const body = JSON.parse(request.body);
     const imageBase64 = body.image;
