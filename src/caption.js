@@ -4,6 +4,7 @@ function captionImage(image) {
 
         fetch('https://sketch2image.netlify.app/test')
         .then(response => alert(response))
+        .catch(error => alert(error))
   
 
         // fetch('https://sketch2image.netlify.app/test', {
