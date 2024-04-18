@@ -1,10 +1,12 @@
-export default async (request) =>
+export default async (request) => {
+  const body = await request.json();
 
-  new Response(JSON.stringify({ test: request }), { 
-    headers: { 'Content-Type': 'application/json' }
-  })
+  return new Response(JSON.stringify({ "received": body }), {
+      headers: { 'Content-Type': 'application/json' }
+  });
+};
 
-  export const config = { path: "/test" };
+export const config = { path: "/test" };
 
 
 // async function setupFetch() {
