@@ -1,7 +1,7 @@
-async function generateImage(summary, extras) {
+function generateImage(summary, extras) {
     const abrExtras = extras.substring(0, 200)
 
-    await fetch('/.netlify/functions/image', {
+    fetch('/.netlify/functions/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ summary: summary, story: abrExtras }),

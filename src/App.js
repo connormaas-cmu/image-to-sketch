@@ -36,7 +36,7 @@ function App() {
   const generateResult = async () => {
     const summary = "drawing of a tree next to a red barn"
     const extras = "tree it to the left of the barn"
-    const resultImage = await generateImage(summary, extras);
+    const resultImage = generateImage(summary, extras);
     alert(resultImage)
     if (resultImage) {
         setImage(resultImage);
