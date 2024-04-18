@@ -8,6 +8,7 @@ function captionImage(image) {
     .then(response => response.text())
     .then(textResponse => {
         alert(textResponse);
+        
     })
 
     // return new Promise((resolve, reject) => { 
