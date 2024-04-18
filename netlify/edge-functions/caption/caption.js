@@ -1,6 +1,6 @@
 export default async (request) =>
   new Response(JSON.stringify({test: 'Hello, World!'}), {
-    headers: { 'content-type': 'application/json' },
+    headers: { 'content-type': 'text/json' },
   })
 
   export const config = { path: "/test" };
