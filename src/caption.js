@@ -10,7 +10,7 @@ function captionImage(image) {
         .then(response => response.text())
         .then(textResponse => {
             if (textResponse.includes("Error")) {
-                alert("Too many requests. Please wait and try again later.")
+                alert(textResponse)
                 return;
             }
             alert(textResponse)
