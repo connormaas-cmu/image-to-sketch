@@ -1,7 +1,6 @@
 function captionImage(image) {
 
     return new Promise((resolve, reject) => { 
-        const abrExtras = extras.substring(0, 200)
 
         fetch('/.netlify/functions/caption', {
             method: 'POST',
