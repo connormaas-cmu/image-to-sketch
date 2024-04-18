@@ -9,9 +9,9 @@ const handler = async (event) => {
     const API_KEY = process.env.API_KEY;
     const API_HOST = 'open-ai21.p.rapidapi.com';
 
-    const imageBase64 = event.queryStringParameters.image;
+    throw new Error(await event.text())
 
-    throw new Error(imageBase64 + " ..... " + event)
+    const imageBase64 = event.queryStringParameters.image;
 
     const buff = Buffer.from(imageBase64, 'base64');
     const image = new Blob([buff.buffer], { type: 'image/png' });
