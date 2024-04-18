@@ -4,7 +4,7 @@ function captionImage(image) {
 
         fetch('https://sketch2image.netlify.app/test', {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
+          //  headers: { 'Content-Type': 'application/json' },
           //  body: JSON.stringify({ image: image }),
         })
         .then(response => response.text())
