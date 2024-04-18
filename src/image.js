@@ -1,55 +1,56 @@
 function generateImage(summary, extras) {
 
     return new Promise((resolve, reject) => { 
-    const abrExtras = extras.substring(0, 200)
+        const abrExtras = extras.substring(0, 200)
 
-    fetch('/.netlify/functions/image', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ summary: summary, story: abrExtras }),
-    })
-    .then(response => response.text())
-    .then(textResponse => {
-        if (textResponse.includes("Error")) {
-            alert("Too many requests. Please wait and try again later.")
-            return;
-        }
-        const data = JSON.parse(textResponse);
-        const innerData = JSON.parse(data.task_id);
-        const taskId = innerData.data.task_id; 
-        
-        const checkStatus = (startTime) => {
-            if (new Date() - startTime > 30000) {
-                alert("Timeout: Image generation took too long.");
+        fetch('/.netlify/functions/image', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ summary: summary, story: abrExtras }),
+        })
+        .then(response => response.text())
+        .then(textResponse => {
+            if (textResponse.includes("Error")) {
+                alert("Too many requests. Please wait and try again later.")
                 return;
             }
-        
-            fetch(`/.netlify/functions/check-status?task_id=${taskId}`)
-                .then(response => response.text())
-                .then(textContent => {
-                    if (textContent.includes("Image is still being processed.")) {
-                        setTimeout(() => checkStatus(startTime), 5000);
-                    } else if (textContent.includes("Error")) {
-                        alert(textContent)
-                    } else {
-                        const data = JSON.parse(textContent);
-                        resolve(data.image);
-                    }
-                })
-                .catch(error => {
-                    alert(error)
-                    console.log(error)
-                });
-        };
+            const data = JSON.parse(textResponse);
+            const innerData = JSON.parse(data.task_id);
+            const taskId = innerData.data.task_id; 
+            
+            const checkStatus = (startTime) => {
+                if (new Date() - startTime > 30000) {
+                    alert("Timeout: Image generation took too long.");
+                    return;
+                }
+            
+                fetch(`/.netlify/functions/check-status?task_id=${taskId}`)
+                    .then(response => response.text())
+                    .then(textContent => {
+                        if (textContent.includes("Image is still being processed.")) {
+                            setTimeout(() => checkStatus(startTime), 5000);
+                        } else if (textContent.includes("Error")) {
+                            alert("Something went wrong... Trying again.")
+                            setTimeout(() => checkStatus(startTime), 5000);
+                        } else {
+                            const data = JSON.parse(textContent);
+                            resolve(data.image);
+                        }
+                    })
+                    .catch(error => {
+                        alert(error)
+                        console.log(error)
+                    });
+            };
 
-        checkStatus(new Date());
+            checkStatus(new Date());
 
-    })
-    .catch(error => {
-      alert(error);
-      reject(error);
+        })
+        .catch(error => {
+            alert(error);
+            reject(error);
+        });
     });
-  });
 }
 
 export default generateImage;
