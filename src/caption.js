@@ -1,5 +1,7 @@
 function captionImage(image) {
 
+    alert(image)
+
     return new Promise((resolve, reject) => { 
 
         fetch('/.netlify/functions/caption', {
