@@ -19,6 +19,7 @@ function generateImage(summary, extras) {
         const taskId = innerData.data.task_id; 
         
         const checkStatus = (startTime) => {
+            alert("here")
             if (new Date() - startTime > 30000) {
                 alert("Timeout: Image generation took too long.");
                 return;
