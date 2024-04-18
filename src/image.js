@@ -29,7 +29,7 @@ async function generateImage(summary, extras) {
                         return data.image;
                     }
                 })
-                .catch(error => )
+                .catch(error => {
                     console.log(error)
                 });
         };
