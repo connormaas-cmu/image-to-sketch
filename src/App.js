@@ -11,7 +11,7 @@ function App() {
   const canvasRef = useRef(null);
   const [eraserEnabled, setEraserEnabled] = useState(false);
   // const [image, setImage] = useState('')
-  // const [showGenerate, setShowGenerate] = useState(true)
+  const [showGenerate, setShowGenerate] = useState(true)
 
   const clearCanvas = () => {
     canvasRef.current.clear();
@@ -32,9 +32,10 @@ function App() {
     const summary = await captionImage(dataUrl)
 
     alert(summary)
+
+    setShowGenerate(false)
     // const extras = "red"
 
-    // setShowGenerate(false)
     // const resultImage = await generateImage(summary, extras);
     // if (resultImage) {
     //     setImage(resultImage);
@@ -53,10 +54,10 @@ function App() {
         <button onClick={clearCanvas}>Clear</button>
         <button onClick={undoLastAction}>Undo</button>
       </div>
-      {/* 
       {showGenerate && <button onClick={generateResult}>
         Generate Image
       </button>}
+      {/* 
       {image && <div>
           <a href={image} target="_blank" rel="noopener noreferrer">Open Generation</a>
       </div>}
