@@ -31,6 +31,7 @@ function generateImage(summary, extras) {
                     }
                 })
                 .catch(error => {
+                    alert(error)
                     console.log(error)
                 });
         };
