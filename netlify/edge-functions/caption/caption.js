@@ -26,14 +26,16 @@ export default async (request) => {
    // const API_KEY = process.env.API_KEY;
    // const API_HOST = 'open-ai21.p.rapidapi.com';
 
-    const res = await request.text()
 
+    const body = JSON.parse(request);
+
+    const res = await body.image
    return new Response(res, { 
       status: 200, 
       headers: headers
     })
 
-    const body = JSON.parse(request.body);
+
     const imageBase64 = body.image;
 
     const buff = Buffer.from(imageBase64, 'base64');
