@@ -29,6 +29,8 @@ function generateImage(summary, extras) {
                 .then(textContent => {
                     if (textContent.includes("Image is still being processed.")) {
                         setTimeout(() => checkStatus(startTime), 5000);
+                    } else if (textContent.includes("Error")) {
+                        alert(textContent)
                     } else {
                         alert("done")
                         const data = JSON.parse(textContent);
