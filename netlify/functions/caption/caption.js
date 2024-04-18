@@ -12,8 +12,6 @@ const handler = async (event) => {
     const body = JSON.parse(event.body);
     const imageBase64 = body.image;
 
-    throw new Error(imageBase64)
-
     const buff = Buffer.from(imageBase64, 'base64');
     const image = new Blob([buff.buffer], { type: 'image/png' });
 
