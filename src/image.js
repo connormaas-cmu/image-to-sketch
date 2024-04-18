@@ -10,6 +10,7 @@ function generateImage(summary, extras) {
     })
     .then(response => response.text())
     .then(textResponse => {
+        alert(textResponse)
         const data = JSON.parse(textResponse);
         const innerData = JSON.parse(data.task_id);
         const taskId = innerData.data.task_id; 
