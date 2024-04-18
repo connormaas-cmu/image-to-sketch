@@ -1,10 +1,33 @@
 export default async (request) => {
-  const body = await request.json();
-  console.log("Received body:", body);
-
-  return new Response(JSON.stringify({ "received": body }), {
-      headers: { 'Content-Type': 'application/json' }
+  // Add CORS headers
+  const headers = new Headers({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*', 
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type'
   });
+
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 204,
+      headers: headers
+    });
+  }
+
+  try {
+    const body = await request.json();
+    console.log("Received body:", body);
+    return new Response(JSON.stringify({ "received": body }), {
+      status: 200,
+      headers: headers
+    });
+  } catch (error) {
+    console.error('Error parsing JSON:', error);
+    return new Response(JSON.stringify({ error: "Error parsing JSON" }), {
+      status: 400,
+      headers: headers
+    });
+  }
 };
 
 export const config = { path: "/test" };
