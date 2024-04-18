@@ -9,7 +9,11 @@ const handler = async (event) => {
     const API_KEY = process.env.API_KEY;
     const API_HOST = 'open-ai21.p.rapidapi.com';
 
-    const image = event.queryStringParameters.image;
+    const imageBase64 = event.queryStringParameters.image;
+
+    const buff = Buffer.from(imageBase64, 'base64');
+    const image = new Blob([buff.buffer], { type: 'image/png' });
+
     const data = new FormData();
     data.append('file', image);
 
