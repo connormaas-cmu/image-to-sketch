@@ -1,5 +1,6 @@
 export default async (request) => {
   const body = await request.json();
+  console.log("Received body:", body);
 
   return new Response(JSON.stringify({ "received": body }), {
       headers: { 'Content-Type': 'application/json' }
