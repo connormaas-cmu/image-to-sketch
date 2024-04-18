@@ -8,12 +8,12 @@ const handler = async (event) => {
   try {
     const API_KEY = process.env.API_KEY;
     const API_HOST = 'open-ai21.p.rapidapi.com';
-    
+
     const image = event.queryStringParameters.image;
     const data = new FormData();
     data.append('file', image);
 
-    const imageResponse = await fetch(`https://open-ai21.p.rapidapi.com/imagecaptioning`, {
+    const caption = await fetch(`https://open-ai21.p.rapidapi.com/imagecaptioning`, {
       method: 'POST',
       headers: {
         'X-RapidAPI-Key': API_KEY,
@@ -22,7 +22,9 @@ const handler = async (event) => {
       body: data
     });
 
-    if (!imageResponse.ok) {
+    alert(caption)
+
+    if (!caption.ok) {
       throw new Error(`Failed to check status: ${imageResponse.statusText}`);
     }
 
