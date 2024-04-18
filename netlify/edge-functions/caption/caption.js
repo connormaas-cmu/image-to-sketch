@@ -3,13 +3,13 @@ async function setupFetch() {
   return module.default;
 }
 
-const handler = async (event) => {
+export default async (request, context) => {
   const fetch = await setupFetch();
   try {
     const API_KEY = process.env.API_KEY;
     const API_HOST = 'open-ai21.p.rapidapi.com';
 
-    const body = JSON.parse(event.body);
+    const body = JSON.parse(request.body);
     const imageBase64 = body.image;
 
     const buff = Buffer.from(imageBase64, 'base64');
@@ -53,5 +53,3 @@ const handler = async (event) => {
     return { statusCode: 500, body: error.toString() };
   }
 };
-
-module.exports = { handler }
