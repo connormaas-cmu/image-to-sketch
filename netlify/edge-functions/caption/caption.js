@@ -27,9 +27,9 @@ export default async (request) => {
    // const API_HOST = 'open-ai21.p.rapidapi.com';
 
 
-    const body = JSON.parse(request);
 
-    const res = await body.image
+
+    const res = await request.image
    return new Response(res, { 
       status: 200, 
       headers: headers
