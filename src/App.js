@@ -8,7 +8,6 @@ function App() {
   const [oldColor, setOldColor] = useState('#444'); 
   const [color, setColor] = useState('#444'); 
   const [size, setSize] = useState(10); 
-  const [imageURL, setImageURL] = useState('');
   const canvasRef = useRef(null);
   const [eraserEnabled, setEraserEnabled] = useState(false);
   const [image, setImage] = useState('')
@@ -53,9 +52,6 @@ function App() {
         <button onClick={toggleEraser}>{eraserEnabled ? 'Back to Pen' : 'Eraser'}</button>
         <button onClick={clearCanvas}>Clear</button>
         <button onClick={undoLastAction}>Undo</button>
-        {imageURL && <div>
-          <a href={imageURL} target="_blank" rel="noopener noreferrer">Open Saved Drawing</a>
-        </div>}
       </div>
       {showGenerate && <button onClick={generateResult}>
         Generate Image
