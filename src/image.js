@@ -40,7 +40,7 @@ function generateImage(summary, extras) {
 
     })
     .catch(error => {
-      alert(error);
+      alert("here", error);
       reject(error);
     });
   });
