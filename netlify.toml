@@ -1,9 +1,10 @@
-
+[[headers]]
+for = "/test"  # Adjust the path as necessary
+[headers.values]
+Access-Control-Allow-Origin = "*"
+Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+Access-Control-Allow-Headers = "Content-Type"
 
 [[edge_functions]]
 function = "caption"
-path = "/test"
-
-[[edge_functions]]
-function = "test"
 path = "/test"
