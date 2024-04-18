@@ -22,7 +22,7 @@ const handler = async (event) => {
       body: data
     });
 
-    alert(caption)
+    throw new Error(caption)
 
     if (!caption.ok) {
       throw new Error(`Failed to check status: ${imageResponse.statusText}`);
