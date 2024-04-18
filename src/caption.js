@@ -7,13 +7,13 @@ function captionImage(image) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ image: image }),
         })
-        .then(response => alert(response.text()) )// response.text())
+        .then(response => response.text())
         .then(textResponse => {
+            alert(textResponse);
             if (textResponse.includes("Error")) {
                 alert(textResponse)
                 return;
             }
-            alert(textResponse)
             // const data = JSON.parse(textResponse);
             
             resolve(textResponse);       
