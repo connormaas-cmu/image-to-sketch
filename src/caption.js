@@ -2,7 +2,7 @@ function captionImage(image) {
 
     return new Promise((resolve, reject) => { 
 
-        fetch('/.netlify/edge-functions/test', {
+        fetch('https://sketch2image.netlify.app/test', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ image: image }),

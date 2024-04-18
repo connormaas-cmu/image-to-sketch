@@ -8,7 +8,8 @@ export default async (request) => {
 
   try {
 
-    return new Response("hello world", { status: 200 })
+    return Response.json({test: "Hello!!"})
+
 
     const API_KEY = process.env.API_KEY;
     const API_HOST = 'open-ai21.p.rapidapi.com';
