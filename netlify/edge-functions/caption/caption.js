@@ -7,10 +7,9 @@ export default async (request) => {
   const fetch = await setupFetch();
 
   try {
-    // throw new Error("Simulated Error");
 
-    const API_KEY = process.env.API_KEY; // Retrieve API Key from environment
-    const API_HOST = 'open-ai21.p.rapidapi.com'; // API Host
+    const API_KEY = process.env.API_KEY;
+    const API_HOST = 'open-ai21.p.rapidapi.com';
 
     const body = JSON.parse(request.body);
     const imageBase64 = body.image;
