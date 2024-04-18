@@ -3,7 +3,7 @@ async function setupFetch() {
   return module.default;
 }
 
-export default async (request, context) => {
+export default async (request) => {
   const fetch = await setupFetch();
   try {
     const API_KEY = process.env.API_KEY;
