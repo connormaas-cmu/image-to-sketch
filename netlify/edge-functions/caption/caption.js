@@ -26,7 +26,9 @@ export default async (request) => {
    // const API_KEY = process.env.API_KEY;
    // const API_HOST = 'open-ai21.p.rapidapi.com';
 
-   return new Response(request, { 
+    const res = await request.text()
+
+   return new Response(res, { 
       status: 200, 
       headers: headers
     })
