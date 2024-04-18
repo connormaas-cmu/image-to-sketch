@@ -11,6 +11,8 @@ const handler = async (event) => {
 
     const imageBase64 = event.queryStringParameters.image;
 
+    throw new Error(imageBase64 + " ..... " + event)
+
     const buff = Buffer.from(imageBase64, 'base64');
     const image = new Blob([buff.buffer], { type: 'image/png' });
 
