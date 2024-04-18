@@ -1,6 +1,6 @@
 export default async (request) =>
-  
-  new Response(JSON.stringify({test: 'Hello, World!'}))
+
+  new Response(JSON.stringify({test: request}))
 
   export const config = { path: "/test" };
 
