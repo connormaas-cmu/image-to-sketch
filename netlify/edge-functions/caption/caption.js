@@ -35,10 +35,7 @@ export default async (request) => {
 
   } catch (error) {
     // Return an error response
-    return new Response(error.toString(), {
-      headers: { 'content-type': 'text/plain' },
-      status: 500
-    });
+    return new Response(error.toString(), { status: 500 });
   }
 };
 
