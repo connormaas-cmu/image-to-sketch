@@ -1,15 +1,23 @@
-async function setupFetch() {
-  const module = await import('node-fetch');
-  return module.default;
-}
+export default async (request) =>
+  new Response('Hello, World!', {
+    headers: { 'content-type': 'text/html' },
+  })
 
-export default async (request) => {
-  const fetch = await setupFetch();
-  try {
-    throw new Error("Simulated Error");
-  } catch (error) {
-    return new Response(error.message, { status: 500 });
-  }
+export const config = { path: "/test" };
+
+
+// async function setupFetch() {
+//   const module = await import('node-fetch');
+//   return module.default;
+// }
+
+// export default async (request) => {
+//   const fetch = await setupFetch();
+//   try {
+//     throw new Error("Simulated Error");
+//   } catch (error) {
+//     return new Response(error.message, { status: 500 });
+//   }
 
   // try {
   //   const API_KEY = process.env.API_KEY;
@@ -58,4 +66,4 @@ export default async (request) => {
   // } catch (error) {
   //   return { statusCode: 500, body: error.toString() };
   // }
-};
+// };
