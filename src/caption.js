@@ -1,8 +1,15 @@
 function captionImage(image) {
 
+    const headers = new Headers({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*', 
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type'
+    });
+
     fetch('https://sketch2image.netlify.app/test', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: headers,
         body: JSON.stringify({ "image" : image }),
     })
     .then(response => response.text())
