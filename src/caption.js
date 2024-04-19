@@ -1,3 +1,5 @@
+import { Buffer } from "buffer";
+
 function captionImage(image) {
     return new Promise((resolve, reject) => { 
         const buff = Buffer.from(image, 'base64');
@@ -14,7 +16,6 @@ function captionImage(image) {
             return resolve(textResponse)
 
         })
-    });
 
     // return new Promise((resolve, reject) => { 
 
@@ -34,13 +35,12 @@ function captionImage(image) {
             
     //         resolve(textResponse);       
 
-    //     })
-    //     .catch(error => {
-    //         alert(error)
-    //         alert("here");
-    //         reject(error);
-    //     });
-    // });
+        // })
+        .catch(error => {
+            alert(error)
+            reject(error);
+        });
+    });
 }
 
 export default captionImage;
