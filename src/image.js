@@ -11,6 +11,7 @@ function generateImage(summary, extras) {
         .then(response => response.text())
         .then(textResponse => {
             if (textResponse.includes("Error")) {
+                console.log(textResponse)
                 alert("Too many requests. Please wait and try again later.")
                 return;
             }
@@ -30,6 +31,7 @@ function generateImage(summary, extras) {
                         if (textContent.includes("Image is still being processed.")) {
                             setTimeout(() => checkStatus(startTime), 5000);
                         } else if (textContent.includes("Error")) {
+                            console.log(textContent)
                             setTimeout(() => checkStatus(startTime), 5000);
                         } else {
                             const data = JSON.parse(textContent);
