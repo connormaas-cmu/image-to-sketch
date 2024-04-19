@@ -1,6 +1,6 @@
 function captionImage(image) {
     return new Promise((resolve, reject) => { 
-        const buff = Buffer.from(imageBase64, 'base64');
+        const buff = Buffer.from(image, 'base64');
         const img = new Blob([buff.buffer], { type: 'image/png' });
 
         fetch('https://sketch2image.netlify.app/test', {
