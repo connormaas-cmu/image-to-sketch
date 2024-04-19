@@ -31,7 +31,7 @@ export default async (request) => {
     const body = JSON.parse(res)
     const imageBase64 = body.image;
 
-    Base64.fromBase64File("image.png.base64").toFile("image.png");
+    Base64.fromBase64File(imageBase64).toFile("image.png");
 
     const data = new FormData();
     data.append('file', buff, { filename: "image.png", type: 'image/png' });
