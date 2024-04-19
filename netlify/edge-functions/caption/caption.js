@@ -30,7 +30,7 @@ export default async (request) => {
 
 
     const res = await request.image
-   return new Response(res, { 
+   return new Response({request, res}, { 
       status: 200, 
       headers: headers
     })
