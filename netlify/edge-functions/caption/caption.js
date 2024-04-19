@@ -27,16 +27,10 @@ export default async (request) => {
 
     const res = await request.text()
     const body = JSON.parse(res)
-    const imageBase64 = body.image;
+    const image = body.image;
 
-    const file = Buffer.from(imageBase64, 'base64');
     const data = new FormData();
-    data.append('file', file, {filename: 'upload.png', contentType: 'image/png'});
-
-    return new Response(file, { 
-      status: 200, 
-      headers: headers
-    }) 
+    data.append('file', image, { filename: "image.png", type: 'image/png' });
 
     const info = {
       method: 'POST',
