@@ -27,7 +27,7 @@ export default async (request) => {
 
     console.log(imageBase64)
     return new Response(imageBase64Prefix, { 
-      status: 500,
+      status: 200,
       headers: headers
     });
     const file = Base64.fromBase64File(imageBase64)
