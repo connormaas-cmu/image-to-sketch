@@ -1,4 +1,4 @@
-import * as base64 from "https://deno. land/std@0. 183.0/encoding/base64.ts";
+import * as base64 from "https://deno.land/std@0.183.0/encoding/base64.ts";
 
 export default async (request) => {
   const headers = new Headers({
