@@ -1,5 +1,3 @@
-const FormData = require('form-data');
-
 async function setupFetch() {
   const module = await import('node-fetch');
   return module.default;
@@ -31,12 +29,14 @@ export default async (request) => {
     const body = JSON.parse(res)
     const imageBase64 = body.image;
 
-    const buff = Buffer.from(imageBase64, 'base64');
+    const file = Buffer.from(imageBase64, 'base64');
     const data = new FormData();
-    data.append('file', buff, {
-      filename: 'upload.png', 
-      contentType: 'image/png'
-    });
+    data.append('file', file, {filename: 'upload.png', contentType: 'image/png'});
+
+    return new Response(file, { 
+      status: 200, 
+      headers: headers
+    }) 
 
     const info = {
       method: 'POST',
