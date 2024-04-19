@@ -46,7 +46,8 @@ export default async (request) => {
 
     const response = await fetch('https://open-ai21.p.rapidapi.com/imagecaptioning', info)
 
-    return new Response(response.text(), { 
+    res = await response.text()
+    return new Response(res, { 
       status: 200, 
       headers: headers
     })
