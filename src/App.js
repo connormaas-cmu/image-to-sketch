@@ -39,12 +39,12 @@ function App() {
     
 
     setShowGenerate(false)
-    // const extras = "red"
+    const extras = "red color theme"
 
-    // const resultImage = await generateImage(summary, extras);
-    // if (resultImage) {
-    //     setImage(resultImage);
-    // }
+    const resultImage = await generateImage(summary, extras);
+    if (resultImage) {
+        setImage(resultImage);
+    }
   };
 
   return (
