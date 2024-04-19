@@ -35,14 +35,18 @@ export default async (request) => {
     const data = new FormData();
     data.append('file', buff, {type: 'image/png'});
 
-    const response = await fetch('https://open-ai21.p.rapidapi.com/imagecaptioning', {
+    const info = {
       method: 'POST',
       headers: {
         'X-RapidAPI-Key': API_KEY,
         'X-RapidAPI-Host': API_HOST,
       },
       body: data
-    });
+    }
+
+    console.log(info)
+
+    const response = await fetch('https://open-ai21.p.rapidapi.com/imagecaptioning', info)
 
     return new Response(response.text(), { 
       status: 200, 
