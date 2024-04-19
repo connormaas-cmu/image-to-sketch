@@ -23,7 +23,7 @@ export default async (request) => {
     const res = await request.text()
     const body = JSON.parse(res)
     const imageBase64Prefix = body.image;
-    const imageBase64 = dataUri.split(',')[1];
+    const imageBase64 = imageBase64Prefix.split(',')[1];
 
     const file = Base64.fromBase64File(imageBase64)
     return new Response(file, { 
