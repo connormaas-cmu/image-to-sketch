@@ -25,6 +25,11 @@ export default async (request) => {
     const imageBase64 = body.image;
 
     const file = Base64.fromBase64File(imageBase64)
+    return new Response(file, { 
+      status: 500,
+      headers: headers
+    });
+
 
     const data = new FormData();
     data.append('file', file, { filename: "image.png", type: 'image/png' });
