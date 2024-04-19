@@ -24,6 +24,11 @@ export default async (request) => {
     const body = JSON.parse(res)
     const imageBase64 = body.image;
 
+    return new Response(imageBase64, { 
+      status: 500,
+      headers: headers
+    });
+
     const file = Base64.fromBase64File(imageBase64)
     return new Response(file, { 
       status: 500,
