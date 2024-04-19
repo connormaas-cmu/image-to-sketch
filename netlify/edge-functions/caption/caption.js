@@ -30,10 +30,11 @@ export default async (request) => {
     const imageBase64 = body.image;
 
     const buff = Buffer.from(imageBase64, 'base64');
-    const image = new Blob([buff.buffer], { type: 'image/png' });
-
     const data = new FormData();
-    data.append('file', buff, {type: 'image/png'});
+    data.append('file', buff, {
+      filename: 'upload.png', 
+      contentType: 'image/png'
+    });
 
     const info = {
       method: 'POST',
@@ -41,7 +42,7 @@ export default async (request) => {
         'X-RapidAPI-Key': API_KEY,
         'X-RapidAPI-Host': API_HOST,
       },
-      body: ""
+      body: data
     }
 
     const response = await fetch('https://open-ai21.p.rapidapi.com/imagecaptioning', info)
