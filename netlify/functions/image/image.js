@@ -22,7 +22,7 @@ const handler = async (event) => {
       "height": 750,
       "width": 750,
       "model_name": "RealVisXL_V3.0.safetensors",
-      "prompt": "Realistic image of the following: " + summary + ". Further guidance: " + extras + "."
+      "prompt": "Realistic image of " + summary + " and " + extras
     }
 
     const response = await fetch('https://omniinfer.p.rapidapi.com/v2/txt2img', {
