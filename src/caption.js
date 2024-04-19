@@ -8,7 +8,7 @@ function captionImage(image) {
         })
         .then(response => response.text())
         .then(textResponse => {
-            console.log(response)
+            console.log(textResponse);
             alert("response: " + textResponse);
             return resolve(textResponse)
 
