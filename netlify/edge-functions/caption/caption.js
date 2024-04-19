@@ -25,9 +25,9 @@ export default async (request) => {
     const imageBase64Prefix = body.image;
     const imageBase64 = imageBase64Prefix.split(',')[1];
 
-    const base64Decoded = base64. decode (imageBase64) ;
-    const textDecoder = new TextDecoder () ;
-    const image = textDecoder. decode (base64Decoded)
+    const base64Decoded = base64.decode(imageBase64) ;
+    const textDecoder = new TextDecoder();
+    const image = textDecoder.decode(base64Decoded)
 
     return new Response(image, { 
       status: 200,
