@@ -1,12 +1,12 @@
 import { Base64 } from "https://deno.land/x/bb64/mod.ts";
 
-async function setupFetch() {
-  const module = await import('node-fetch');
-  return module.default;
-}
+// async function setupFetch() {
+//   const module = await import('node-fetch');
+//   return module.default;
+// }
 
 export default async (request) => {
-  const fetch = await setupFetch();
+  // const fetch = await setupFetch();
 
   const headers = new Headers({
     'Content-Type': 'application/json',
