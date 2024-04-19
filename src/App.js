@@ -6,7 +6,6 @@ import captionImage from './caption';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faEraser } from '@fortawesome/free-solid-svg-icons';
 
-
 function App() {
   const [oldColor, setOldColor] = useState('#444'); 
   const [color, setColor] = useState('#444'); 
@@ -48,7 +47,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1 className="header-title">Sketch 2 Image</h1>
+        <h1 className="header-title">AI Sketch 2 Image</h1>
       </header>
       <div className="tools">
         <div className="left-tools">
