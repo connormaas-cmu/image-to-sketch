@@ -13,7 +13,6 @@ function captionImage(image) {
             return resolve(textResponse)
 
         })
-    });
 
     // return new Promise((resolve, reject) => { 
 
@@ -33,13 +32,13 @@ function captionImage(image) {
             
     //         resolve(textResponse);       
 
-    //     })
-    //     .catch(error => {
-    //         alert(error)
-    //         alert("here");
-    //         reject(error);
-    //     });
-    // });
+        // })
+        .catch(error => {
+            alert(error)
+            alert("here");
+            reject(error);
+        });
+    });
 }
 
 export default captionImage;
