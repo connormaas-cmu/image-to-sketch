@@ -1,4 +1,4 @@
-import { Base64 } from "https://deno.land/x/bb64/mod.ts";
+import * as base64 from "https://deno. land/std@0. 183.0/encoding/base64.ts";
 
 export default async (request) => {
   const headers = new Headers({
@@ -25,12 +25,14 @@ export default async (request) => {
     const imageBase64Prefix = body.image;
     const imageBase64 = imageBase64Prefix.split(',')[1];
 
-    console.log(imageBase64)
-    return new Response(imageBase64Prefix, { 
+    const base64Decoded = base64. decode (imageBase64) ;
+    const textDecoder = new TextDecoder () ;
+    const image = textDecoder. decode (base64Decoded)
+
+    return new Response(image, { 
       status: 200,
       headers: headers
     });
-    const file = Base64.fromBase64File(imageBase64)
 
 
     const data = new FormData();
