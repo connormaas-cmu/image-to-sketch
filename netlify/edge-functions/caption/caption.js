@@ -25,11 +25,11 @@ export default async (request) => {
     const imageBase64Prefix = body.image;
     const imageBase64 = imageBase64Prefix.split(',')[1];
 
-    const file = Base64.fromBase64File(imageBase64)
-    return new Response(file, { 
+    return new Response(imageBase64, { 
       status: 500,
       headers: headers
     });
+    const file = Base64.fromBase64File(imageBase64)
 
 
     const data = new FormData();
