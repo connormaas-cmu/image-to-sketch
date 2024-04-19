@@ -4,7 +4,7 @@ body, html {
 }
 
 .App {
-  margin-top: 60px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -12,12 +12,22 @@ body, html {
   color: #61dafb;
 }
 
+.header-title {
+  font-family: 'Arial', sans-serif;
+  font-size: 5vm; 
+  color: #333; 
+  margin: 0;
+  padding: 20px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
 .canvasContainer {
   flex: 0;
 }
 
 .canvasStyle {
-  border: 1px solid black;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #cccccc; 
   margin: 0 auto;
   max-width: calc(80vw - 60px);
   max-height: calc(80vw - 60px);;
@@ -51,6 +61,25 @@ body, html {
   width: 57px;
 }
 
+.keyword-input {
+  font-size: 16px;
+  padding: 10px 15px;
+  border: 2px solid #cccccc; 
+  border-radius: 25px;
+  outline: none; 
+  width: 525px; 
+  max-width: calc(80vw - 85px);
+  max-height: calc(80vw - 85px);
+  margin: 20px auto; 
+  display: block;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); 
+  transition: border-color 0.2s; 
+}
+
+.keyword-input:focus {
+  border-color: #a4d4ae;
+}
+
 .tool-button {
   margin-bottom: 10px;
   padding: 3px;
@@ -61,6 +90,29 @@ body, html {
   border: none;
   border-radius: 5px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.generate-btn {
+  font-size: 18px;
+  padding: 15px 30px;
+  background-color: #5c7cfa; 
+  border: none;
+  border-radius: 25px; 
+  color: white;
+  cursor: pointer;
+  display: block;
+  margin: 10px auto; 
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); 
+  transition: background-color 0.3s, box-shadow 0.3s; 
+}
+
+.generate-btn:hover {
+  background-color: #4a6fda; 
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.generate-btn:active {
+  background-color: #4059ad;
 }
 
 @keyframes App-logo-spin {

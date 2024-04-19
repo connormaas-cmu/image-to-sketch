@@ -10,7 +10,7 @@ import { faPencilAlt, faEraser } from '@fortawesome/free-solid-svg-icons';
 function App() {
   const [oldColor, setOldColor] = useState('#444'); 
   const [color, setColor] = useState('#444'); 
-  const [size, setSize] = useState(10); 
+  const [size, setSize] = useState(7); 
   const canvasRef = useRef(null);
   const [eraserEnabled, setEraserEnabled] = useState(false);
   const [image, setImage] = useState('')
@@ -47,6 +47,9 @@ function App() {
 
   return (
     <div className="App">
+      <header>
+        <h1 className="header-title">Sketch 2 Image</h1>
+      </header>
       <div className="tools">
         <div className="left-tools">
           <button onClick={clearCanvas} className="tool-button">Clear</button>
@@ -74,9 +77,10 @@ function App() {
         value={extras}
         onChange={e => setExtras(e.target.value)}
         maxLength="50"
-        placeholder="Further prompting"
+        placeholder="Enter optional keywords..."
+        className="keyword-input"
       />
-      <button onClick={generateResult}>Generate Image</button>
+      <button onClick={generateResult} className="generate-btn">Generate Image</button>
       {image && <div>
           <a href={image} target="_blank" rel="noopener noreferrer">Open Generation</a>
       </div>}
