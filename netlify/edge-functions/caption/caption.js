@@ -33,7 +33,7 @@ export default async (request) => {
     const image = new Blob([buff.buffer], { type: 'image/png' });
 
     const data = new FormData();
-    data.append('file', image);
+    data.append('file', buff, {type: 'image/png'});
 
     const response = await fetch('https://open-ai21.p.rapidapi.com/imagecaptioning', {
       method: 'POST',
