@@ -1,13 +1,6 @@
 import { Base64 } from "https://deno.land/x/bb64/mod.ts";
 
-// async function setupFetch() {
-//   const module = await import('node-fetch');
-//   return module.default;
-// }
-
 export default async (request) => {
-  // const fetch = await setupFetch();
-
   const headers = new Headers({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*', 
@@ -31,10 +24,10 @@ export default async (request) => {
     const body = JSON.parse(res)
     const imageBase64 = body.image;
 
-    Base64.fromBase64File(imageBase64).toFile("image.png");
+    const file = Base64.fromBase64File(imageBase64)
 
     const data = new FormData();
-    data.append('file', buff, { filename: "image.png", type: 'image/png' });
+    data.append('file', file, { filename: "image.png", type: 'image/png' });
 
     const info = {
       method: 'POST',
