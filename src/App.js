@@ -5,6 +5,7 @@ import generateImage from './image';
 import captionImage from './caption';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faEraser } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [oldColor, setOldColor] = useState('#444'); 
@@ -14,13 +15,15 @@ function App() {
   const [eraserEnabled, setEraserEnabled] = useState(false);
   const [image, setImage] = useState('')
   const [extras, setExtras] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [stopGeneration, setStopGeneration] = useState(false);
 
   const clearCanvas = () => {
     canvasRef.current.clear();
   };
 
   const toggleEraser = () => {
-    setOldColor(color)
+    setOldColor(color);
     setEraserEnabled(!eraserEnabled);
     setColor(eraserEnabled ? oldColor : '#FFFFFF');
   };
@@ -29,19 +32,38 @@ function App() {
     canvasRef.current.undo();
   };
 
+  const closeModal = () => {
+    setIsGenerating(false);
+    setStopGeneration(true);
+    setImage(null)
+  };
+
   const generateResult = async () => {
+    setIsGenerating(true);
+
     const dataUrl = canvasRef.current.getDataURL(); 
     const summaryData = await captionImage(dataUrl)
-    if (!summaryData) {
-      return
+    if (stopGeneration) {
+      setStopGeneration(false)
+      return;
+    } else if (!summaryData) {
+      return;
     }
     const summary = JSON.parse(summaryData).result
-    const extras = "red color theme"
 
     const resultImage = await generateImage(summary, extras);
+    
+    if (stopGeneration) {
+      setStopGeneration(false);
+      return;
+    }
+
     if (resultImage) {
         setImage(resultImage);
+    } else {
+        alert("Something went wrong. Please try again")
     }
+    setIsGenerating(false);
   };
 
   return (
@@ -49,40 +71,60 @@ function App() {
       <header>
         <h1 className="header-title">AI Sketch 2 Image</h1>
       </header>
-      <div className="tools">
-        <div className="left-tools">
-          <button onClick={clearCanvas} className="tool-button">Clear</button>
-          <button onClick={undoLastAction} className="tool-button">Undo</button>
+      {(!image && !isGenerating) && (
+        <div>
+          <div className="tools">
+            <div className="left-tools">
+              <button onClick={clearCanvas} className="tool-button">Clear</button>
+              <button onClick={undoLastAction} className="tool-button">Undo</button>
+            </div>
+            
+            <div className="canvasContainer">
+              <CanvasDraw ref={canvasRef} lazyRadius={0} hideGrid={true} brushColor={color} brushRadius={size} canvasHeight={550} canvasWidth={550} className="canvasStyle" />
+            </div>
+            
+            <div className="right-tools">
+              <button onClick={toggleEraser} className="tool-button">
+                <FontAwesomeIcon icon={eraserEnabled ? faPencilAlt : faEraser} />
+              </button>
+              {!eraserEnabled && (
+                <input type="color" value={color} onChange={e => setColor(e.target.value)} className="color-picker" />
+              )}
+              <div className="size-adjuster-container">
+                <input type="range" min="1" max="20" value={size} onChange={e => setSize(e.target.value)} className="size-adjuster" orient="vertical" />
+              </div>
+            </div>
+          </div>
+          <input
+            type="text"
+            value={extras}
+            onChange={e => setExtras(e.target.value)}
+            maxLength="50"
+            placeholder="Enter optional keywords..."
+            className="keyword-input"
+          />
+          <button onClick={generateResult} className="generate-btn">Generate Image</button>
         </div>
-        
-        <div className="canvasContainer">
-          <CanvasDraw ref={canvasRef} lazyRadius={0} hideGrid={true} brushColor={color} brushRadius={size} canvasHeight={550} canvasWidth={550} className="canvasStyle" />
-        </div>
-        
-        <div className="right-tools">
-          <button onClick={toggleEraser} className="tool-button">
-             <FontAwesomeIcon icon={eraserEnabled ? faPencilAlt : faEraser} />
-          </button>
-          {!eraserEnabled && (
-            <input type="color" value={color} onChange={e => setColor(e.target.value)} className="color-picker" />
-          )}
-          <div className="size-adjuster-container">
-            <input type="range" min="1" max="20" value={size} onChange={e => setSize(e.target.value)} className="size-adjuster" orient="vertical" />
+      )}
+      {(isGenerating && !image) && (
+        <div className="gen-modal">
+          <div className="loading-container">
+            <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+            <p>Generating...</p>
+            <button onClick={closeModal} className="back-button">Back</button>
           </div>
         </div>
-      </div>
-      <input
-        type="text"
-        value={extras}
-        onChange={e => setExtras(e.target.value)}
-        maxLength="50"
-        placeholder="Enter optional keywords..."
-        className="keyword-input"
-      />
-      <button onClick={generateResult} className="generate-btn">Generate Image</button>
-      {image && <div>
-          <a href={image} target="_blank" rel="noopener noreferrer">Open Generation</a>
-      </div>}
+      )}
+      {image && (
+          <div className="img-modal">
+            <div>
+              <a href={image} target="_blank" rel="noopener noreferrer">
+                <img src={image} alt="Generated Content" />
+              </a>
+            </div>
+            <button onClick={closeModal} className="generate-btn">Back</button>
+          </div>
+      )}
     </div>
   );
 }
