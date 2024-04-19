@@ -41,10 +41,8 @@ export default async (request) => {
         'X-RapidAPI-Key': API_KEY,
         'X-RapidAPI-Host': API_HOST,
       },
-      body: data
+      body: ""
     }
-
-    console.log(info)
 
     const response = await fetch('https://open-ai21.p.rapidapi.com/imagecaptioning', info)
 
