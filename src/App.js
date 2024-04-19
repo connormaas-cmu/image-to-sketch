@@ -1,7 +1,7 @@
 import './App.css';
 import CanvasDraw from 'react-canvas-draw';
 import React, { useState, useRef } from 'react';
-// import generateImage from './image';
+import generateImage from './image';
 import captionImage from './caption';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
   const [size, setSize] = useState(10); 
   const canvasRef = useRef(null);
   const [eraserEnabled, setEraserEnabled] = useState(false);
-  // const [image, setImage] = useState('')
+  const [image, setImage] = useState('')
   const [showGenerate, setShowGenerate] = useState(true)
 
   const clearCanvas = () => {
@@ -62,11 +62,9 @@ function App() {
       {showGenerate && <button onClick={generateResult}>
         Generate Image
       </button>}
-      {/* 
       {image && <div>
           <a href={image} target="_blank" rel="noopener noreferrer">Open Generation</a>
       </div>}
-      */}
     </div>
   );
 }
