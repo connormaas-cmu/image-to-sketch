@@ -28,7 +28,7 @@ export default async (request) => {
 
 
 
-    const res = await response.text()
+    const res = await request.text()
     const body = JSON.parse(res)
    return new Response(body.image, { 
       status: 200, 
