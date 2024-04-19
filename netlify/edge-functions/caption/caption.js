@@ -1,3 +1,5 @@
+const FormData = require('form-data');
+
 async function setupFetch() {
   const module = await import('node-fetch');
   return module.default;
