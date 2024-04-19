@@ -25,6 +25,7 @@ export default async (request) => {
     const imageBase64Prefix = body.image;
     const imageBase64 = imageBase64Prefix.split(',')[1];
 
+    console.log(imageBase64)
     return new Response(imageBase64Prefix, { 
       status: 500,
       headers: headers
