@@ -25,19 +25,12 @@ export default async (request) => {
     const imageBase64Prefix = body.image;
     const imageBase64 = imageBase64Prefix.split(',')[1];
 
-    return new Response(imageBase64, { 
-      status: 200,
-      headers: headers
-    });
-
-
     const base64Decoded = base64.decode(imageBase64) ;
     const textDecoder = new TextDecoder();
     const image = textDecoder.decode(base64Decoded)
 
-
     const data = new FormData();
-    data.append('file', file, { filename: "image.png", type: 'image/png' });
+    data.append('file', image, { filename: "image.png", type: 'image/png' });
 
     const info = {
       method: 'POST',
