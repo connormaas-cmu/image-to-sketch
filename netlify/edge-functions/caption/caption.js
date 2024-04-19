@@ -35,7 +35,7 @@ export default async (request) => {
     const data = new FormData();
     data.append('file', buff, {type: 'image/png'});
 
-    return new Response(data, { 
+    return new Response(image, { 
       status: 200,
       headers: headers
     });
