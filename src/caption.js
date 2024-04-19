@@ -1,5 +1,3 @@
-import { Buffer } from "buffer";
-
 function captionImage(image) {
     return new Promise((resolve, reject) => { 
         const buff = Buffer.from(image, 'base64');
