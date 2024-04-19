@@ -40,10 +40,6 @@ export default async (request) => {
       headers: {
         'X-RapidAPI-Key': API_KEY,
         'X-RapidAPI-Host': API_HOST,
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*', 
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type'
       },
       body: data
     });
@@ -54,7 +50,6 @@ export default async (request) => {
     })
 
   } catch (error) {
-    // Return an error response
     return new Response(error.toString(), { 
       status: 500,
       headers: headers
