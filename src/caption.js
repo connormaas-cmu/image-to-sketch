@@ -15,7 +15,7 @@ function captionImage(image) {
             return resolve(textResponse)
         })
         .catch(error => {
-            alert(error);
+            alert(error)
             reject(error);
         });
     });
