@@ -15,7 +15,7 @@ function captionImage(image) {
             alert("response: " + textResponse);
             return resolve(textResponse)
 
-        })
+        }) 
 
     // return new Promise((resolve, reject) => { 
 
