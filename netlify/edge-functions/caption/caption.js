@@ -24,13 +24,12 @@ export default async (request) => {
     const body = JSON.parse(res)
     const imageBase64Prefix = body.image;
     const imageBase64 = imageBase64Prefix.split(',')[1];
-
-    const base64Decoded = base64.decode(imageBase64) ;
-    const textDecoder = new TextDecoder();
-    const image = textDecoder.decode(base64Decoded)
+    
+    const decodedBytes = base64.decode(imageBase64);
+    const blob = new Blob([decodedBytes], { type: 'image/png' });
 
     const data = new FormData();
-    data.append('file', image, { filename: "image.png", type: 'image/png' });
+    data.append('file', blob, "image.png");
 
     const info = {
       method: 'POST',
