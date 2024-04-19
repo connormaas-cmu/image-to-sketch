@@ -15,7 +15,7 @@ body, html {
 .header-title {
   font-family: 'Arial', sans-serif;
   font-size: 5vm; 
-  color: #333; 
+  color: #333333; 
   margin: 0;
   padding: 20px 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
@@ -47,8 +47,8 @@ body, html {
 }
 
 .size-adjuster {
-  writing-mode: bt-lr; 
-  appearance: slider-vertical;
+  writing-mode: vertical-lr; 
+  direction: rtl;
   width: 20px;
   height: 100px;
   padding: 0;

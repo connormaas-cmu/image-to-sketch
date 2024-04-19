@@ -39,29 +39,33 @@ function App() {
   };
 
   const generateResult = async () => {
-    setIsGenerating(true);
+    try {
+      setIsGenerating(true);
 
-    const dataUrl = canvasRef.current.getDataURL(); 
-    const summaryData = await captionImage(dataUrl)
-    if (stopGeneration) {
-      setStopGeneration(false)
-      return;
-    } else if (!summaryData) {
-      return;
-    }
-    const summary = JSON.parse(summaryData).result
+      const dataUrl = canvasRef.current.getDataURL(); 
+      const summaryData = await captionImage(dataUrl)
+      if (stopGeneration) {
+        setStopGeneration(false)
+        return;
+      } else if (!summaryData) {
+        return;
+      }
+      const summary = JSON.parse(summaryData).result
 
-    const resultImage = await generateImage(summary, extras);
-    
-    if (stopGeneration) {
-      setStopGeneration(false);
-      return;
-    }
+      const resultImage = await generateImage(summary, extras);
+      
+      if (stopGeneration) {
+        setStopGeneration(false);
+        return;
+      }
 
-    if (resultImage) {
-        setImage(resultImage);
-    } else {
-        alert("Something went wrong. Please try again.")
+      if (resultImage) {
+          setImage(resultImage);
+      } else {
+          alert("Something went wrong. Please try again.")
+      }
+    } catch (error) {
+      alert(error)
     }
     setIsGenerating(false);
   };
@@ -91,7 +95,7 @@ function App() {
                 <input type="color" value={color} onChange={e => setColor(e.target.value)} className="color-picker" />
               )}
               <div className="size-adjuster-container">
-                <input type="range" min="1" max="20" value={size} onChange={e => setSize(e.target.value)} className="size-adjuster" orient="vertical" />
+                <input type="range" min="1" max="20" orient="vertical" value={size} onChange={e => setSize(e.target.value)} className="size-adjuster" />
               </div>
             </div>
           </div>
