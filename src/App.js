@@ -61,7 +61,7 @@ function App() {
     if (resultImage) {
         setImage(resultImage);
     } else {
-        alert("Something went wrong. Please try again")
+        alert("Something went wrong. Please try again.")
     }
     setIsGenerating(false);
   };
