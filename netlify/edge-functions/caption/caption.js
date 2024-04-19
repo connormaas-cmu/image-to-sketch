@@ -4,6 +4,7 @@ async function setupFetch() {
 }
 
 export default async (request) => {
+  const fetch = await setupFetch();
 
   const headers = new Headers({
     'Content-Type': 'application/json',
@@ -19,23 +20,13 @@ export default async (request) => {
     });
   }
 
-  // const fetch = await setupFetch();
-
   try {
 
-   // const API_KEY = process.env.API_KEY;
-   // const API_HOST = 'open-ai21.p.rapidapi.com';
-
-
+   const API_KEY = process.env.API_KEY;
+   const API_HOST = 'open-ai21.p.rapidapi.com';
 
     const res = await request.text()
     const body = JSON.parse(res)
-   return new Response(body.image, { 
-      status: 200, 
-      headers: headers
-    })
-
-
     const imageBase64 = body.image;
 
     const buff = Buffer.from(imageBase64, 'base64');
@@ -44,16 +35,14 @@ export default async (request) => {
     const data = new FormData();
     data.append('file', image);
 
-    // const response = await fetch(`https://open-ai21.p.rapidapi.com/imagecaptioning`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'X-RapidAPI-Key': API_KEY,
-    //     'X-RapidAPI-Host': API_HOST,
-    //   },
-    //   body: data
-    // });
-
-    const response = "some_image_url"
+    const response = await fetch(`https://open-ai21.p.rapidapi.com/imagecaptioning`, {
+      method: 'POST',
+      headers: {
+        'X-RapidAPI-Key': API_KEY,
+        'X-RapidAPI-Host': API_HOST,
+      },
+      body: data
+    });
 
     return new Response(response.text(), { 
       status: 200, 
