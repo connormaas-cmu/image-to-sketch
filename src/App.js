@@ -29,9 +29,14 @@ function App() {
 
   const generateResult = async () => {
     const dataUrl = canvasRef.current.getDataURL(); 
-    const summary = await captionImage(dataUrl)
+    const summaryData = await captionImage(dataUrl)
+    if (!summaryData) {
+      return
+    }
+    const summary = JSON.parse(summaryData).result
 
     alert(summary)
+    
 
     setShowGenerate(false)
     // const extras = "red"
