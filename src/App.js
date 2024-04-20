@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import generateImage from './image';
 import captionImage from './caption';
@@ -32,6 +32,14 @@ function App() {
     canvasRef.current.undo();
   };
 
+  useEffect(() => {
+    if (stopGeneration) {
+      setIsGenerating(false);
+      setImage(null);
+      setStopGeneration(false);
+    }
+  }, [stopGeneration]);
+
   const closeModal = () => {
     setIsGenerating(false);
     setStopGeneration(true);
@@ -49,34 +57,25 @@ function App() {
 
       const dataUrl = canvasRef.current.getDataURL(); 
       const summaryData = await captionImage(dataUrl)
-      if (stopGeneration) {
-        setStopGeneration(false)
-        alert('here1')
-        return;
-      } else if (!summaryData) {
-        alert('here2')
+      if (!summaryData) {
         return;
       }
       const summary = JSON.parse(summaryData).result
       alert("Produced summmary: " + summary)
 
       const resultImage = await generateImage(summary, extras);
-      
-      if (stopGeneration) {
-        setStopGeneration(false);
-        return;
-      }
 
       if (resultImage) {
           setImage(resultImage);
       } else {
           alert("Something went wrong. Please try again.")
+          return;
       }
+
     } catch (error) {
       alert(error)
     }
     setIsGenerating(false);
-    setStopGeneration(false);
   };
 
   return (
