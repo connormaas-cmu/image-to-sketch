@@ -36,11 +36,13 @@ function App() {
     stopGenerationRef.current = true;
     setIsGenerating(false);
     setImage(null)
+    setExtras('')
   };
 
   const closeImage = () => {
     setIsGenerating(false);
     setImage(null)
+    setExtras('')
   };
 
   const generateResult = async () => {
