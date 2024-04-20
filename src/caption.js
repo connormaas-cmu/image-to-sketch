@@ -9,7 +9,7 @@ function captionImage(image) {
         .then(response => response.text())
         .then(textResponse => {
             if (textResponse.includes("Error")) {
-                alert(textResponse)
+                reject(new Error(textResponse));
                 return;
             }
             return resolve(textResponse)
