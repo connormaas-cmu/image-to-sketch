@@ -13,6 +13,7 @@ function generateImage(summary, extras) {
             if (textResponse.includes("Error")) {
                 console.log(textResponse)
                 alert("Too many requests. Please wait and try again later.")
+                reject(new Error("Too many requests. Please wait and try again later."));
                 return;
             }
             const data = JSON.parse(textResponse);
@@ -20,14 +21,17 @@ function generateImage(summary, extras) {
             const taskId = innerData.data.task_id; 
             
             const checkStatus = (startTime) => {
-                if (new Date() - startTime > 35000) {
+                if (new Date() - startTime > 30000) {
                     alert("Timeout: Image generation took too long. Please try again in a minute.");
-                    return;
+                    reject(new Error("Timeout: Image generation took too long. Please try again in a minute."));
+                    return
                 }
             
                 fetch(`/.netlify/functions/check-status?task_id=${taskId}`)
                     .then(response => response.text())
                     .then(textContent => {
+                        alert(textContent)
+                        alert(new Date() - startTime)
                         if (textContent.includes("Image is still being processed.")) {
                             setTimeout(() => checkStatus(startTime), 5000);
                         } else if (textContent.includes("Error")) {

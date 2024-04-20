@@ -51,6 +51,7 @@ function App() {
         return;
       }
       const summary = JSON.parse(summaryData).result
+      alert("Produced summmary: " + summary)
 
       const resultImage = await generateImage(summary, extras);
       
