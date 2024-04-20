@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import generateImage from './image';
 import captionImage from './caption';
