@@ -46,8 +46,10 @@ function App() {
       const summaryData = await captionImage(dataUrl)
       if (stopGeneration) {
         setStopGeneration(false)
+        alert('here1')
         return;
       } else if (!summaryData) {
+        alert('here2')
         return;
       }
       const summary = JSON.parse(summaryData).result
