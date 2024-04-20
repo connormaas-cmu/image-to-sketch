@@ -8,6 +8,7 @@ function captionImage(image) {
         })
         .then(response => response.text())
         .then(textResponse => {
+            alert(textResponse)
             if (textResponse.includes("Error")) {
                 reject(new Error(textResponse));
                 return;
@@ -15,8 +16,8 @@ function captionImage(image) {
             return resolve(textResponse)
         })
         .catch(error => {
-            alert(error)
-            reject(error);
+            reject(new Error(error));
+            return;
         });
     });
 }
