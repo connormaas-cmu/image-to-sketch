@@ -54,17 +54,13 @@ function App() {
   const generateResult = async () => {
     try {
       setIsGenerating(true);
-
       const dataUrl = canvasRef.current.getDataURL(); 
       const summaryData = await captionImage(dataUrl)
-      if (!summaryData) {
-        return;
-      }
+      if (!summaryData || stopGeneration) {return;}
       const summary = JSON.parse(summaryData).result
-      alert("Produced summmary: " + summary)
-
+      if (stopGeneration) {return;}
       const resultImage = await generateImage(summary, extras);
-
+      if (stopGeneration) {return;}
       if (resultImage) {
           setImage(resultImage);
       } else {
