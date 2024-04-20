@@ -16,7 +16,7 @@ function App() {
   const [image, setImage] = useState('')
   const [extras, setExtras] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
-  const [stopGeneration, setStopGeneration] = useState(false);
+  const stopGenerationRef = useRef(false);
 
   const clearCanvas = () => {
     canvasRef.current.clear();
@@ -32,17 +32,9 @@ function App() {
     canvasRef.current.undo();
   };
 
-  useEffect(() => {
-    if (stopGeneration) {
-      setIsGenerating(false);
-      setImage(null);
-      setStopGeneration(false);
-    }
-  }, [stopGeneration]);
-
   const closeModal = () => {
+    stopGenerationRef.current = true;
     setIsGenerating(false);
-    setStopGeneration(true);
     setImage(null)
   };
 
@@ -53,14 +45,15 @@ function App() {
 
   const generateResult = async () => {
     try {
+      stopGenerationRef.current = false;
       setIsGenerating(true);
       const dataUrl = canvasRef.current.getDataURL(); 
       const summaryData = await captionImage(dataUrl)
-      if (!summaryData || stopGeneration) {return;}
+      if (!summaryData || stopGenerationRef.current) {return;}
       const summary = JSON.parse(summaryData).result
-      if (stopGeneration) {return;}
+      if (stopGenerationRef.current) {return;}
       const resultImage = await generateImage(summary, extras);
-      if (stopGeneration) {return;}
+      if (stopGenerationRef.current) {return;}
       if (resultImage) {
           setImage(resultImage);
       } else {
