@@ -17,8 +17,8 @@ export default async (request) => {
 
   try {
 
-   const API_KEY = Deno.env.get("API_KEY");
-   const API_HOST = 'open-ai21.p.rapidapi.com';
+    const API_KEY = Deno.env.get("API_KEY");
+    const API_HOST = 'open-ai21.p.rapidapi.com';
 
     const res = await request.text()
     const body = JSON.parse(res)

@@ -38,6 +38,11 @@ function App() {
     setImage(null)
   };
 
+  const closeImage = () => {
+    setIsGenerating(false);
+    setImage(null)
+  };
+
   const generateResult = async () => {
     try {
       setIsGenerating(true);
@@ -71,6 +76,7 @@ function App() {
       alert(error)
     }
     setIsGenerating(false);
+    setStopGeneration(false);
   };
 
   return (
@@ -129,7 +135,7 @@ function App() {
                 <img src={image} alt="Generated Content" />
               </a>
             </div>
-            <button onClick={closeModal} className="generate-btn">Back</button>
+            <button onClick={closeImage} className="generate-btn">Back</button>
           </div>
       )}
     </div>
