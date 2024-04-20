@@ -11,8 +11,6 @@ function generateImage(summary, extras) {
         .then(response => response.text())
         .then(textResponse => {
             if (textResponse.includes("Error")) {
-                console.log(textResponse)
-                alert("Too many requests. Please wait and try again later.")
                 reject(new Error("Too many requests. Please wait and try again later."));
                 return;
             }
