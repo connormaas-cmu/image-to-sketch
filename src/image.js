@@ -22,7 +22,6 @@ function generateImage(summary, extras) {
             
             const checkStatus = (startTime) => {
                 if (new Date() - startTime > 30000) {
-                    alert("Timeout: Image generation took too long. Please try again in a minute.");
                     reject(new Error("Timeout: Image generation took too long. Please try again in a minute."));
                     return
                 }
@@ -30,8 +29,6 @@ function generateImage(summary, extras) {
                 fetch(`/.netlify/functions/check-status?task_id=${taskId}`)
                     .then(response => response.text())
                     .then(textContent => {
-                        alert(textContent)
-                        alert(new Date() - startTime)
                         if (textContent.includes("Image is still being processed.")) {
                             setTimeout(() => checkStatus(startTime), 5000);
                         } else if (textContent.includes("Error")) {
